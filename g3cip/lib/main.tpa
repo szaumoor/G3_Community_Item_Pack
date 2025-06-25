@@ -362,6 +362,7 @@ ACTION_IF enhanced_edition BEGIN
        ~g3cip/spl/g3cresta.spl~ ~override~ // cloak of sound rest
        ~g3cip/spl/g3crestb.spl~ ~override~ // cloak of sound rest
        ~g3cip/spl/g3crestc.spl~ ~override~ // cloak of sound rest
+       ~g3cip/spl/g3crestd.spl~ ~override~ // cloak of sound rest
 
   ACTION_IF g3brush_redgreen BEGIN // The Realmshaper's Brush by CrevsDaak
 
