@@ -346,3 +346,22 @@ Usable by:
  Ranger
  Monk
  Bard~
+@1072 = ~It's, like, green and stuff. 
+
+STATISTICS:
+
+STATISTICS:
+
+THAC0: +3 bonus
+Damage: 1d4+3 (melee, piercing)
+Damage: 1d6+3 (thrown, missile)
+Special:  Returns to user's hand once thrown
+Weight: 2
+Speed Factor: 3
+Proficiency Type: Spear 
+Type:  1-handed
+Requires: 5 Strength
+Not Usable By:
+ Cleric
+ Mage
+ Thief~

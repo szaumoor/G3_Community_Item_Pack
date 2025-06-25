@@ -1,0 +1,14 @@
+ACTION_IF !VARIABLE_IS_SET cdspear BEGIN 
+
+  ACTION_IF FILE_EXISTS_IN_GAME ~cdspear.pro~ BEGIN
+
+    OUTER_SET cdspear = IDS_OF_SYMBOL (~missile~ ~cdspear~)
+
+  END ELSE BEGIN
+
+    COPY_EXISTING ~spear.pro~ ~override/cdspear.pro~
+    ADD_PROJECTILE ~override/cdspear.pro~
+
+  END
+  
+END
