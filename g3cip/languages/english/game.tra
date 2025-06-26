@@ -436,7 +436,7 @@ Weight: 3~
 @1068 = ~Painted Green~
 @1069 = ~Painted Blue~
 @1070 = ~Hit points drained~
-@1071 = ~Evergreen Javelin~
+@1071 = ~Evergreen Javelin +3~
 @1072 = ~It's, like, green and stuff. 
 
 STATISTICS:
@@ -448,6 +448,33 @@ THAC0: +3
 Damage: 1d4+3 (melee, piercing)
 Damage: 1d6+3 (thrown, missile)
 Speed Factor: 3
+Proficiency Type: Spear
+Type: One-handed
+Requires:
+ 5 Strength
+
+Weight: 2~
+@1073 = ~Hmm, what's this javelin?~
+@1074 = ~Aye, a fine javelin. With a pair of emeralds we could make it even better.~
+@1075 = ~Oh, and ye have some emeralds as well. We can use those to improve your javelin even more.~
+@1076 = ~It'll cost ye 5,000 gold and without me apprentice, you'll need to stay on a day and help me run the forge.~
+@1077 = ~What's would that take?~
+@1078 = ~No, I'm not interested. Is there anything else you can use?~
+@1079 = ~No, I don't think so. I think I'll be going now.~
+@1080 = ~Yes, let's do it.~
+@1081 = ~Well, let's see what ye've got then.~
+@1082 = ~Evergreen Javelin +4~
+@1083 = ~It's, like, green and stuff. 
+
+STATISTICS:
+
+Combat abilities:
+– Returns to the wielder's hand when thrown
+
+THAC0: +4
+Damage: 1d4+4(melee, piercing)
+Damage: 1d6+4 (thrown, missile)
+Speed Factor: 2
 Proficiency Type: Spear
 Type: One-handed
 Requires:

@@ -144,6 +144,7 @@ END
 
 EXTEND_BOTTOM ~ar2000.bcs~   ~g3cip/baf/ar2000.baf~   // spawn merchant
 EXTEND_BOTTOM ~botsmith.bcs~ ~g3cip/baf/botsmith.baf~ // cespenar's item upgrade
+EXTEND_BOTTOM ~ar0334.bcs~   ~g3cip/baf/ar0334.baf~   // cromwell's item upgrade
 
 /////                                                  \\\\\
 ///// items                                            \\\\\
@@ -374,6 +375,13 @@ COPY ~g3cip/bam/g3ceveri%enhanced_edition%.bam~ ~override/g3ceveri.bam~
 COPY ~g3cip/itm/g3ceverg.itm~ ~override~
   SAY 0x0c @1071 // identified name
   SAY 0x54 @1072 // identified description
+
+COPY ~g3cip/itm/g3cever2.itm~ ~override~
+  SAY 0x0c @1082 // identified name
+  SAY 0x54 @1083 // identified description
+
+COPY_EXISTING ~g3ceverg.itm~ ~override~
+              ~g3cever2.itm~ ~override~
   READ_LONG  0x64 abil_off
   READ_SHORT 0x68 abil_num
   FOR (index = 0 ; index < abil_num ; ++index) BEGIN
