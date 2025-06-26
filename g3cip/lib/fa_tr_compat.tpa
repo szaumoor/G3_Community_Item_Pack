@@ -1,0 +1,13 @@
+ACTION_IF FILE_EXISTS_IN_GAME ~g3cbdb.itm~ BEGIN // if black dragon belt is in game
+
+  // place black dragon belt on Ketta
+  COPY_EXISTING ~hlketta.cre~  ~override~
+                ~hlketta2.cre~ ~override~
+    REMOVE_CRE_ITEM ~g3cbdb~ // delete from ketta
+    BUT_ONLY
+    
+  COPY ~g3cip/sto/g3cmerch.sto~ ~override~
+    LPF ADD_STORE_ITEM_EX INT_VAR overwrite = 1 STR_VAR item_name = g3cbdb  position = "AFTER g3curd" flags = identified END
+    BUT_ONLY
+
+END
