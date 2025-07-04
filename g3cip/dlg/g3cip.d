@@ -37,52 +37,7 @@ APPEND BOTSMITH
     IF ~~ THEN DO ~SetGlobal("g3cupgrade","GLOBAL",0)~ EXIT
   END
 
-END 
-
-APPEND WSMITH01
-
-  IF WEIGHT #-1 ~GlobalGT("g3cupgrade","MYAREA",0)~ THEN BEGIN cd_cromwell_upgrade_done SAY #59797
-    IF ~~ THEN DO ~SetGlobal("g3cupgrade","MYAREA",0)~ EXIT
-  END
-
-  IF ~~ THEN BEGIN PartyHasAtLeastOneItem SAY @1073
-    IF ~~ THEN GOTO PartyDoesNotHaveAllParts
-    IF ~NumItemsPartyGT("misc43",1)~ THEN GOTO PartyHasAllParts
-  END
-
-  IF ~~ THEN BEGIN PartyDoesNotHaveAllParts SAY @1074
-    IF ~~ THEN GOTO MovingRightAlong
-  END
-
-  IF ~~ THEN BEGIN PartyHasAllParts SAY @1075
-    IF ~~ THEN REPLY @1077 GOTO HowMuch
-    IF ~~ THEN REPLY @1078 GOTO MovingRightAlong
-  END
-
-  IF ~~ THEN BEGIN HowMuch SAY @1076
-    IF ~PartyGoldGT(4999)~ THEN DO ~SetGlobal("g3cupgrade","MYAREA",1)
-                                    TakePartyGold(5000)
-                                    DestroyGold(5000)
-                                    TakePartyItem("g3ceverg")
-                                    DestroyItem("g3ceverg")
-                                    TakePartyItemNum("misc43",2)
-                                    DestroyItem("misc43")~ REPLY @1080 GOTO 56
-    IF ~~ THEN REPLY @1078 GOTO MovingRightAlong
-    IF ~~ THEN REPLY @1079 GOTO 12
-  END
-
-  IF ~~ THEN BEGIN MovingRightAlong SAY @1081
-    COPY_TRANS WSMITH01 13
-  END
-
 END
-
-EXTEND_BOTTOM WSMITH01 13
-
-  IF ~PartyHasItem("g3ceverg")~ THEN GOTO PartyHasAtLeastOneItem
-
-END
-
 
 BEGIN g3cmerch
 

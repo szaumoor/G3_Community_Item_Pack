@@ -352,61 +352,6 @@ ACTION_IF !enhanced_edition BEGIN
 
 END
 
-// evergreen javelin by Cam
-// get throwing STR weapon flag from azuredge
-OUTER_SET throwing_flags = BIT0 // set failsafes
-COPY_EXISTING ~ax1h10.itm~ ~override~ // get axe projectile
-  READ_LONG  0x64 abil_off
-  READ_SHORT 0x68 abil_num
-  FOR (index = 0 ; index < abil_num ; ++index) BEGIN
-    READ_BYTE (abil_off + 0x00 + (index * 0x38)) type
-    PATCH_IF type = 2 BEGIN
-      READ_LONG  (abil_off + 0x26 + (index * 0x38)) throwing_flags
-      SET index = abil_num // kill loop
-    END
-  END
-  BUT_ONLY
-
-APPEND ~tooltip.2da~ ~g3ceverg 15527 15529 -1~ // tooltip stuff
-
-INCLUDE ~g3cip/lib/cdspear.tpa~ // sets cdspear projectile value
-  
-COPY ~g3cip/bam/g3ceveri%enhanced_edition%.bam~ ~override/g3ceveri.bam~
-COPY ~g3cip/itm/g3ceverg.itm~ ~override~
-  SAY 0x0c @1071 // identified name
-  SAY 0x54 @1072 // identified description
-
-COPY ~g3cip/itm/g3cever2.itm~ ~override~
-  SAY 0x0c @1082 // identified name
-  SAY 0x54 @1083 // identified description
-
-COPY_EXISTING ~g3ceverg.itm~ ~override~
-              ~g3cever2.itm~ ~override~
-  READ_LONG  0x64 abil_off
-  READ_SHORT 0x68 abil_num
-  FOR (index = 0 ; index < abil_num ; ++index) BEGIN
-    READ_BYTE (abil_off + 0x00 + (index * 0x38)) type
-    PATCH_IF type = 2 BEGIN
-      WRITE_LONG  (abil_off + 0x26 + (index * 0x38)) throwing_flags
-      WRITE_SHORT (abil_off + 0x2a + (index * 0x38)) cdspear // new throwing spear projectile
-      SET index = abil_num // kill loop
-    END
-  END
-  /*
-  PATCH_IF ((MOD_IS_INSTALLED ~zstweaks.tp2~ ~1150~) OR 
-            (MOD_IS_INSTALLED ~zstweaks.tp2~ ~103~) OR
-            (MOD_IS_INSTALLED ~iwdification.tp2~ ~190~)) BEGIN // Make spears do a baseline damage of 1d8, not 1d6
-    LPF ALTER_HEADER INT_VAR match_type = 1 dicesize = 8 END
-    SPRINT old @201
-    SPRINT new @202
-    READ_STRREF 0x54 desc
-    INNER_PATCH_SAVE desc ~%desc%~ BEGIN // update identified description
-      REPLACE_TEXTUALLY ~%old%~ ~%new%~
-    END
-    SAY_EVALUATED 0x54 ~%desc%~ // write changes
-  END
-    */
-
 /////                                                  \\\\\
 ///// spells                                           \\\\\
 /////                                                  \\\\\
