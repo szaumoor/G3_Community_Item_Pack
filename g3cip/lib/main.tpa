@@ -226,8 +226,8 @@ COPY ~g3cip/itm/g3ctinkr.itm~ ~override~
   SAY 0x54 @1019 // identified description
   PATCH_IF !enhanced_edition BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = 177 END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 324 match_parameter2 = 104 opcode = 177 parameter2 = 4 STR_VAR resource = g3ctinkx END
-    LPF ALTER_EFFECT INT_VAR match_opcode = 324 match_parameter2 = 105 opcode = 177 parameter2 = 5 STR_VAR resource = g3ctinkx END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 318 match_parameter2 = 104 opcode = 177 parameter2 = 4 STR_VAR resource = g3ctinkx END
+    LPF ALTER_EFFECT INT_VAR match_opcode = 318 match_parameter2 = 105 opcode = 177 parameter2 = 5 STR_VAR resource = g3ctinkx END
   END
 
 // Belt of Urdunnir by DiesIrae
@@ -235,7 +235,7 @@ COPY ~g3cip/itm/g3curd.itm~ ~override~
   SAY 0x0c @1021 // identified name
   SAY 0x54 @1022 // identified description
   PATCH_IF !enhanced_edition BEGIN
-    PATCH_FOR_EACH op IN 324 44 10 BEGIN
+    PATCH_FOR_EACH op IN 318 44 10 BEGIN
       LPF DELETE_EFFECT INT_VAR match_opcode = op multi_match = 1 END
     END
     LPF ALTER_EFFECT INT_VAR match_opcode = 10 parameter1 = 3 END
@@ -402,10 +402,10 @@ COPY ~g3cip/spl/g3cvine.spl~  ~override~ // Vine Shield retaliation spell
      ~g3cip/spl/g3cspikb.spl~ ~override~
      ~g3cip/spl/g3cspikc.spl~ ~override~
      ~g3cip/spl/g3cvamp.spl~  ~override~
-     ~g3cip/spl/g3cperil.spl~ ~override~
      ~g3cip/spl/g3cacid.spl~  ~override~ // Dart of the Severing Mist retaliation spell
 
 COPY ~g3cip/spl/g3cspika.spl~ ~override~
+     ~g3cip/spl/g3cperil.spl~ ~override~
   PATCH_IF !enhanced_edition BEGIN
     LPF DELETE_EFFECT INT_VAR match_opcode = 321 END
   END
