@@ -17,6 +17,7 @@ Other bugfixes
     other effects (rgb, rg, gg, br, gr, rr) are fine
 */
 
+
 ACTION_IF GAME_IS ~bg2ee eet~ BEGIN // ee games
 
   OUTER_SET enhanced_edition = 1
@@ -39,6 +40,7 @@ END
 
 INCLUDE ~g3cip/lib/alter_header.tpa~
 
+
 /////                                                  \\\\\
 ///// 2da/ids edits                                    \\\\\
 /////                                                  \\\\\
@@ -48,47 +50,51 @@ APPEND ~tooltip.2da~
 g3ccsm 15211 24839 -1
 g3cvamp 15527 12071 -1~
 
-ACTION_IF enhanced_edition BEGIN
+ACTION_IF g3_allow_realmshaper BEGIN
 
-  COPY_EXISTING ~splstate.ids~ ~override~
-    SET g3brush_red = 0
-    SET g3brush_green = 0
-    SET g3brush_blue = 0
-    SET g3brush_redgreen = 0
-    FOR (index = 127 ; index < 256 ; ++index) BEGIN
-      SET found = 0
-      REPLACE_EVALUATE ~^\(%index%[ %TAB%]+\)~ BEGIN
-        SET found = 1
-      END ~%MATCH1%~
-      PATCH_IF !found BEGIN
-        PATCH_IF !g3brush_red      BEGIN SET g3brush_red = index      END ELSE
-        PATCH_IF !g3brush_green    BEGIN SET g3brush_green = index    END ELSE
-        PATCH_IF !g3brush_blue     BEGIN SET g3brush_blue = index     END ELSE
-        PATCH_IF !g3brush_redgreen BEGIN SET g3brush_redgreen = index SET index = 256 END
+  ACTION_IF enhanced_edition BEGIN
+
+    COPY_EXISTING ~splstate.ids~ ~override~
+      SET g3brush_red = 0
+      SET g3brush_green = 0
+      SET g3brush_blue = 0
+      SET g3brush_redgreen = 0
+      FOR (index = 127 ; index < 256 ; ++index) BEGIN
+        SET found = 0
+        REPLACE_EVALUATE ~^\(%index%[ %TAB%]+\)~ BEGIN
+          SET found = 1
+        END ~%MATCH1%~
+        PATCH_IF !found BEGIN
+          PATCH_IF !g3brush_red      BEGIN SET g3brush_red = index      END ELSE
+          PATCH_IF !g3brush_green    BEGIN SET g3brush_green = index    END ELSE
+          PATCH_IF !g3brush_blue     BEGIN SET g3brush_blue = index     END ELSE
+          PATCH_IF !g3brush_redgreen BEGIN SET g3brush_redgreen = index SET index = 256 END
+        END
       END
+      BUT_ONLY
+
+    ACTION_IF g3brush_red AND g3brush_green AND g3brush_blue AND g3brush_redgreen BEGIN
+
+      APPEND ~splstate.ids~
+    ~%g3brush_red% g3brush_red
+    %g3brush_green% g3brush_green
+    %g3brush_blue% g3brush_blue
+    %g3brush_redgreen% g3brush_redgreen~
+
     END
-    BUT_ONLY
 
-  ACTION_IF g3brush_red AND g3brush_green AND g3brush_blue AND g3brush_redgreen BEGIN
+  END ELSE BEGIN
 
-    APPEND ~splstate.ids~
-  ~%g3brush_red% g3brush_red
-  %g3brush_green% g3brush_green
-  %g3brush_blue% g3brush_blue
-  %g3brush_redgreen% g3brush_redgreen~
+    OUTER_SET g3brush_red = 0
+    OUTER_SET g3brush_green = 0
+    OUTER_SET g3brush_blue = 0
+    OUTER_SET g3brush_redgreen = 0
 
   END
 
-END ELSE BEGIN
-
-  OUTER_SET g3brush_red = 0
-  OUTER_SET g3brush_green = 0
-  OUTER_SET g3brush_blue = 0
-  OUTER_SET g3brush_redgreen = 0
+  COPY ~g3cip/2da/g3crune.2da~  ~override~
 
 END
-
-COPY ~g3cip/2da/g3crune.2da~  ~override~
 
 /////                                                  \\\\\
 ///// artwork                                          \\\\\
@@ -127,14 +133,14 @@ COPY_EXISTING ~mage18z.bcs~ ~override~
     REPLACE_TEXTUALLY ~\(SetGlobal("SpellTrigger","LOCALS",1)[%LNL%%MNL%%WNL% %TAB%]+END\)~ ~\1
 
 IF
-	See(NearestEnemyOf(Myself))
-	HasItem("g3cakk",Myself)
+  See(NearestEnemyOf(Myself))
+  HasItem("g3cakk",Myself)
   Range(NearestEnemyOf(Myself),5)
-	Global("g3cakk","LOCALS",0)
+  Global("g3cakk","LOCALS",0)
 THEN
-	RESPONSE #100
-		SetGlobal("g3cakk","LOCALS",1)
-		//UseItem("g3cakk",Myself)
+  RESPONSE #100
+    SetGlobal("g3cakk","LOCALS",1)
+    //UseItem("g3cakk",Myself)
     DisplayString(Myself,@1020)
     ApplySpell(Myself,NPC_BLADE_BARRIER)
 END

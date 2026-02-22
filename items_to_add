@@ -1,0 +1,26 @@
+// Set to 0 to disable. Leave at 1 to enable.
+
+
+OUTER_SET g3_allow_realmshaper              = 1
+OUTER_SET g3_allow_slipperty_court          = 1
+OUTER_SET g3_allow_cloak_sound_rest         = 1
+OUTER_SET g3_allow_akkabar_battleblade      = 1
+OUTER_SET g3_allow_caster_guide_self_def    = 1
+OUTER_SET g3_allow_count_sound_matrices     = 1
+OUTER_SET g3_allow_power_real_change        = 1
+OUTER_SET g3_allow_vine_shield              = 1
+OUTER_SET g3_allow_graze                    = 1
+OUTER_SET g3_allow_lunar_shards             = 1
+OUTER_SET g3_allow_never_alone              = 1
+OUTER_SET g3_allow_tinkerer_spectacles      = 1
+OUTER_SET g3_allow_belt_urdunnir            = 1
+OUTER_SET g3_allow_peril_sensitive_goggles  = 1
+OUTER_SET g3_allow_executioner_putty        = 1
+OUTER_SET g3_allow_robe_jasteya             = 1
+OUTER_SET g3_allow_emerald_ioun             = 1
+OUTER_SET g3_allow_lucky_sweater            = 1
+OUTER_SET g3_allow_spiked_armor             = 1
+OUTER_SET g3_allow_dart_lethargic_soul      = 1
+OUTER_SET g3_allow_vamp_dart_eternal_hunger = 1
+OUTER_SET g3_allow_dart_severing_mist       = 1
+OUTER_SET g3_allow_black_dragon_belt        = 1
