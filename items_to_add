@@ -2,7 +2,7 @@
 
 
 OUTER_SET g3_allow_realmshaper              = 1
-OUTER_SET g3_allow_slipperty_court          = 1
+OUTER_SET g3_allow_slippery_court           = 1
 OUTER_SET g3_allow_cloak_sound_rest         = 1
 OUTER_SET g3_allow_akkabar_battleblade      = 1
 OUTER_SET g3_allow_caster_guide_self_def    = 1
