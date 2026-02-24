@@ -579,7 +579,7 @@ ACTION_IF g3_allow_executioner_putty BEGIN
 END
 
 ACTION_IF g3_allow_black_dragon_belt BEGIN
-  
+
   // Black Dragon Belt by zenblack
   COPY ~g3cip/spl/g3cbdb0.spl~ ~override~
     //SAY 0x08 @1064 // name
@@ -616,36 +616,56 @@ COPY ~g3cip/cre/g3cmerch.cre~ ~override~
   SAY 0x08 @1048 // name
   SAY 0x0c @1048 // tooltip
 
-// place battleblade
-COPY_EXISTING ~mage18z.cre~ ~override~
-  ADD_CRE_ITEM ~g3cakk~ #1 #0 #0 ~none~ ~ring~
-  BUT_ONLY
-  
-ACTION_IF ((!MOD_IS_INSTALLED ~FORGOTTEN-ARMAMENT.TP2~ ~20~) AND
-           (!MOD_IS_INSTALLED ~TACTICS-REMIX.TP2~      ~11~)) BEGIN
+ACTION_IF g3_allow_akkabar_battleblade BEGIN
 
-  // place black dragon belt on Ketta
-  COPY_EXISTING ~hlketta.cre~  ~override~
-                ~hlketta2.cre~ ~override~
-    ADD_CRE_ITEM ~g3cbdb~ #0 #0 #0 ~none~ ~belt cloak~
+  // place battleblade
+  COPY_EXISTING ~mage18z.cre~ ~override~
+    ADD_CRE_ITEM ~g3cakk~ #1 #0 #0 ~none~ ~ring~
     BUT_ONLY
 
-END 
+END
 
-// place severing mist to il-khan battlemage
-COPY_EXISTING ~gromg05.cre~ ~override~
-  ADD_CRE_ITEM ~g3cacid~ #0 #0 #0 ~none~ ~weapon~ EQUIP
-  BUT_ONLY
+ACTION_IF g3_allow_black_dragon_belt BEGIN
 
-// place runeblade
-COPY_EXISTING ~demfig02.cre~ ~override~
-  REPLACE_CRE_ITEM ~g3crunez~ #0 #100 #0 ~none~ ~weapon2~
-  BUT_ONLY
+  ACTION_IF ((!MOD_IS_INSTALLED ~FORGOTTEN-ARMAMENT.TP2~ ~20~) AND
+            (!MOD_IS_INSTALLED ~TACTICS-REMIX.TP2~      ~11~)) BEGIN
 
-// place Vampiric Dart of Eternal Hunger by Marzx13 on N'ashtar
-COPY_EXISTING ~gpmage1.cre~ ~override~
-  ADD_CRE_ITEM ~g3cvamp~ #0 #1 #0 ~none~ ~weapon~ EQUIP
-  BUT_ONLY
+    // place black dragon belt on Ketta
+    COPY_EXISTING ~hlketta.cre~  ~override~
+                  ~hlketta2.cre~ ~override~
+      ADD_CRE_ITEM ~g3cbdb~ #0 #0 #0 ~none~ ~belt cloak~
+      BUT_ONLY
+
+  END 
+
+END
+
+ACTION_IF g3_allow_dart_severing_mist BEGIN
+
+  // place severing mist to il-khan battlemage
+  COPY_EXISTING ~gromg05.cre~ ~override~
+    ADD_CRE_ITEM ~g3cacid~ #0 #0 #0 ~none~ ~weapon~ EQUIP
+    BUT_ONLY
+
+END
+
+ACTION_IF g3_allow_elysian_runeblade BEGIN
+
+  // place runeblade
+  COPY_EXISTING ~demfig02.cre~ ~override~
+    REPLACE_CRE_ITEM ~g3crunez~ #0 #100 #0 ~none~ ~weapon2~
+    BUT_ONLY
+
+END
+
+ACTION_IF g3_allow_vamp_dart_eternal_hunger BEGIN
+
+  // place Vampiric Dart of Eternal Hunger by Marzx13 on N'ashtar
+  COPY_EXISTING ~gpmage1.cre~ ~override~
+    ADD_CRE_ITEM ~g3cvamp~ #0 #1 #0 ~none~ ~weapon~ EQUIP
+    BUT_ONLY
+
+END
 
 /////                                                  \\\\\
 ///// misc                                             \\\\\
@@ -686,7 +706,6 @@ COPY ~g3cip/sto/g3cmerch.sto~ ~override~
   END  
             
 
-
 /////                                                  \\\\\
 ///// pricing                                          \\\\\
 /////                                                  \\\\\
@@ -697,11 +716,11 @@ ACTION_PHP_EACH g3c_prices AS item => price BEGIN
 
   COPY_EXISTING ~%item%.itm~ ~override~
     WRITE_LONG 0x34 ~%price%~
-    BUT_ONLY IF_EXISTS
+  BUT_ONLY IF_EXISTS
 
 END
 
-ACTION_IF enhanced_edition AND !g3brush_redgreen BEGIN
+ACTION_IF g3_allow_realmshaper AND enhanced_edition AND !g3brush_redgreen BEGIN
 
   PRINT @3
 
